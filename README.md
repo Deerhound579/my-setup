@@ -1,1 +1,1 @@
-# my-zsh
+# my-setup
