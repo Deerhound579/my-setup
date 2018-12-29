@@ -42,9 +42,9 @@ Quickly set up my favorite working environment wherever I go.
 
 Configurations are stored in my `dot.zshrc` file.
 
-![Screen Shot 2018-12-28 at 6.41.27 PM](/Users/mort/Desktop/Screen Shot 2018-12-28 at 6.41.27 PM.png)
+![zsh1](https://github.com/Deerhound579/my-setup/blob/master/zsh1.png)
 
-![Screen Shot 2018-12-28 at 6.41.12 PM](/Users/mort/Desktop/Screen Shot 2018-12-28 at 6.41.12 PM.png)
+![zsh2](https://github.com/Deerhound579/my-setup/blob/master/zsh2.png)
 
 * Markdown editor: [Typora](https://typora.io/)
 
