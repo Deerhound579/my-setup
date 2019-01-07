@@ -70,7 +70,6 @@ plugins=(
   zsh-syntax-highlighting
   zsh-autosuggestions
   colored-man-pages
-  #bat
 )
 
 # =============================================================================
@@ -91,7 +90,6 @@ bindkey "^R" history-incremental-pattern-search-backward
 bindkey "^F" history-incremental-pattern-search-forward
 # Do not require a space when attempting to tab-complete.
 bindkey "^i" expand-or-complete-prefix
-bindkey "^," autosuggest-accept
 
 
 # =============================================================================
