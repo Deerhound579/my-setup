@@ -1,6 +1,7 @@
 # My Setup
 
 Quickly set up my favorite working environment wherever I go.
+I'm planning to write a shell script to automate all installations.
 
 ---
 
