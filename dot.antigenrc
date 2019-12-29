@@ -1,0 +1,24 @@
+# Load oh-my-zsh
+antigen use oh-my-zsh
+
+# Change theme
+
+antigen bundle mafredri/zsh-async
+antigen bundle sindresorhus/pure
+
+# Plugins from oh-my-zsh repo
+# General
+antigen bundle git
+antigen bundle colorize
+antigen bundle Z
+antigen bundle colored-man-pages
+# Python auto-completions
+antigen bundle pip
+antigen bundle python
+
+
+# Plugins from external repo
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-autosuggestions
+
+antigen apply
