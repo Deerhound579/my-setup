@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/Users/lisixian'
+let g:netrw_dirhist_2='/Users/lisixian/Documents/CS/coding-challenge'
+let g:netrw_dirhist_3='/Users/lisixian/Documents/CS/coding-challenge/code-jam-2020'

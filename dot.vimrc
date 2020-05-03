@@ -1,6 +1,6 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'junegunn/seoul256.vim'
+Plug 'ayu-theme/ayu-vim'
 
 call plug#end()
 
@@ -21,7 +21,21 @@ nnoremap <leader>f 1z=
 nnoremap <leader>s :set spell!
 
 " Color scheme
+set termguicolors
+let ayucolor="mirage"
+colo ayu
+set clipboard+=ideaput
+" Absolute line number in insert mode
+" Relative in normal mode
+set number relativenumber
 
-let g:seoul256_background = 234
-let g:seoul256_background = 255
-colo seoul256-light
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+" Change visual selection color
+hi Visual ctermfg=NONE ctermbg=LightYellow cterm=bold,underline
+" Show trailing white space
+set listchars=trail:.
+set list
