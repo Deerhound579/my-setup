@@ -22,10 +22,22 @@ zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 alias typora="open -a typora"
 alias makevideodel="ffmpeg -framerate 30 -pattern_type glob -i '*.png' output.mp4 && rm *.png"
+# ===============================
+# Alias
+# ===============================
 alias makevideo="ffmpeg -framerate 30 -pattern_type glob -i '*.png' -vcodec libx264 -pix_fmt yuv420p movie.mp4"
 alias jrnlv="jrnl -n 3"
 alias jrnle="jrnl -n --edit"
+alias vrc="vim ~/.vimrc"
+alias zrc="vim ~/.zshrc"
+# ===============================
+# Path
+# ===============================
 export PATH=/Users/lisixian/.local/bin:$PATH
 export DISPLAY=:0
 # added by travis gem
 [ -f /Users/lisixian/.travis/travis.sh ] && source /Users/lisixian/.travis/travis.sh
+# function for compiling c++ program
+tomain(){
+    g++ -std=c++11 "$1" -o main && ./main
+}
