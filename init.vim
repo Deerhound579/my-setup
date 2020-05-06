@@ -146,7 +146,7 @@ endif
 " Defx Config 
 " ==================================================================
 "
-" 使用 ;e 切换显示文件浏览，使用 ;a 查找到当前文件位置
+" https://juejin.im/entry/5d92f7eaf265da5b926bc022
 let g:maplocalleader=';'
 nnoremap <silent> <LocalLeader>e
 \ :<C-u>Defx -resume -toggle -buffer-name=tab`tabpagenr()`<CR>
@@ -154,7 +154,6 @@ nnoremap <silent> <LocalLeader>a
 \ :<C-u>Defx -resume -buffer-name=tab`tabpagenr()` -search=`expand('%:p')`<CR>
 
 function! s:defx_mappings() abort
-	" Defx window keyboard mappings
 	setlocal signcolumn=no
     " Resize explorer using > and <
     nnoremap <silent><buffer><expr> > defx#do_action('resize',
