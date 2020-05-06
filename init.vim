@@ -1,4 +1,8 @@
-call plug#begin('~/.vim/plugged')
+if has('nvim')
+    call plug#begin('~/.config/nvim/plugged')
+else
+    call plug#begin('~/.vim/plugged')
+endif
 
 " Theme
 Plug 'dracula/vim', {'as': 'dracula'}
@@ -24,13 +28,13 @@ Plug 'kamykn/spelunker.vim' " better spellcheck
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 if has('nvim')
-  Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'kristijanhusak/defx-Icons'
-  Plug 'kristijanhusak/defx-git'
+Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'kristijanhusak/defx-Icons'
+Plug 'kristijanhusak/defx-git'
 else
-  Plug 'Shougo/defx.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'Shougo/defx.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
 call plug#end()
@@ -43,7 +47,7 @@ let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', '
 " INSERT REMAP
 " ======================
 "
-inoremap jk <ESC> " ======================
+inoremap jk <ESC> 
 
 " ======================
 " NORMAL REMAP
@@ -56,30 +60,50 @@ nnoremap <CR> o<Esc>k
 nnoremap <S-CR> O<Esc>j
 nnoremap <leader>ev :split $MYVIMRC<CR>  
 nnoremap <leader>sv :source $MYVIMRC<CR>
-" =======================
-set nocompatible
-set encoding=utf-8
-set mouse=a
-set clipboard=unnamed " system clipboard
-" set spell spelllang=en_us
-set nospell " disable vim's spell check
-set laststatus=2 " always show status bar
-set tabstop=4
-set shiftwidth=4 " when indenting with '>', use 4 spaces width
-set expandtab " On pressing tab, insert 4 spaces
-set hlsearch " Enable highlighting for search results
+nnoremap <silent> <S-Up> <c-w>+
+nnoremap <silent> <S-Down> <c-w>-
+nnoremap <silent> <S-Left> <c-w><
+nnoremap <silent> <S-Right> <c-w>>
+" ======================
+" TERMINAL REMAP
+" ======================
+tnoremap <C-n> <C-\><C-n>
+tnoremap <C-h> <C-\><C-N><C-w>h
+tnoremap <C-j> <C-\><C-N><C-w>j
+tnoremap <C-k> <C-\><C-N><C-w>k
+tnoremap <C-l> <C-\><C-N><C-w>l
+" ======================
+" GENERAL 
+" ======================
+" Absolute line number in insert mode
 " Color scheme
-set background=dark
+" Relative in normal mode
+" set spell spelllang=en_us
 syntax on
-set termguicolors
 let ayucolor="dark"
 let g:gruvbox_contrast_dark="hard"
 let g:gruvbox_contrast_light="soft"
 colorscheme gruvbox
-" Absolute line number in insert mode
-" Relative in normal mode
+set background=dark
+set clipboard=unnamed " system clipboard
+set encoding=utf-8
+set expandtab " On pressing tab, insert 4 spaces
+set hlsearch " Enable highlighting for search results
+set laststatus=2 " always show status bar
+set mouse=a
+set nocompatible
+set nospell " disable vim's spell check
 set number relativenumber
+set shiftwidth=4 " when indenting with '>', use 4 spaces width
+set ignorecase
+set smartcase
+set splitbelow
+set splitright
+set tabstop=4
+set termguicolors
 
+command! -nargs=* T execute 'split | resize' . float2nr(round(winheight(0)*0.3)) . '| terminal <args>'
+command! -nargs=* VT execute 'vsplit | vertical resize' . float2nr(round(winwidth(0)*0.4)) . '| terminal <args>'
 augroup numbertoggle
     autocmd!
     autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
@@ -448,27 +472,10 @@ nnoremap <Leader>m :<C-u>LeaderfMru<CR>
 " Rainbow
 "
 let g:rainbow_conf = {
-            \	'guifgs': ['gold', 'DeepSkyBlue1', 'orange', 'maroon1','turquoise1', 'LightPink' ],
-            \	'ctermfgs': ['lightyellow', 'lightblue', 'lightcyan', 'lightmagenta'],
-            \	'operators': '_,_',
-            \	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-            \	'separately': {
-            \		'*': {},
-            \		'tex': {
-            \			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
-            \		},
-            \		'lisp': {
-            \			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
-            \		},
-            \		'vim': {
-            \			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
-            \		},
-            \		'html': {
-            \			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
-            \		},
-            \		'css': 0,
-            \	}
-            \} 
+    \	'guifgs': ['gold', 'DeepSkyBlue1', 'orange', 'maroon1','turquoise1', 'LightPink' ],
+    \	'ctermfgs': ['lightyellow', 'lightblue', 'lightcyan', 'lightmagenta'],
+    \	'operators': '_,_',
+    \	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],}
 
 " spell check
 let g:spelunker_check_type = 2
@@ -477,6 +484,7 @@ let g:spelunker_disable_backquoted_checking = 1
 
 " git gutter
 let g:gitgutter_terminal_reports_focus=0
+
 function! GitGutterNextHunkCycle()
   let line = line('.')
   silent! GitGutterNextHunk
@@ -485,3 +493,15 @@ function! GitGutterNextHunkCycle()
     GitGutterNextHunk
   endif
 endfunction
+
+function! GitGutterPrevHunkCycle()
+  let line = line('.')
+  silent! GitGutterPrevHunk
+  if line('.') == line
+    execute 'normal! G'
+    GitGutterPrevHunk
+  endif
+endfunction
+
+nnoremap <silent> ]c :call GitGutterNextHunkCycle()<CR>
+nnoremap <silent> [c :call GitGutterPrevHunkCycle()<CR>
