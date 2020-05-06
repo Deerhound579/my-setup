@@ -4,8 +4,9 @@
 alias makevideo="ffmpeg -framerate 30 -pattern_type glob -i '*.png' -vcodec libx264 -pix_fmt yuv420p movie.mp4"
 alias jrnlv="jrnl -n 3"
 alias jrnle="jrnl -n --edit"
-alias vrc="vim ~/.vimrc"
-alias zrc="vim ~/.zshrc"
+alias vrc="nvim ~/.vimrc"
+alias zrc="nvim ~/.zshrc"
+alias nv="nvim ~/.config/nvim/init.vim"
 # tmux 
 alias ta='tmux attach -t'
 alias tad='tmux attach -d -t'

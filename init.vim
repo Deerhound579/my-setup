@@ -5,18 +5,27 @@ Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'ayu-theme/ayu-vim'
 Plug 'morhetz/gruvbox'
 Plug 'arcticicestudio/nord-vim'
+Plug 'shinchu/lightline-gruvbox.vim'
+Plug 'itchyny/lightline.vim'
 
 " Functionality
-Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'sbdchd/neoformat'
 Plug 'Yggdroot/indentLine'
+Plug 'Yggdroot/LeaderF'
+Plug 'honza/vim-snippets'
+Plug 'luochen1990/rainbow'
+Plug 'ap/vim-css-color'
+Plug 'sheerun/vim-polyglot'
+Plug 'jiangmiao/auto-pairs'
+Plug 'kamykn/spelunker.vim' " better spellcheck
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 if has('nvim')
   Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'kristijanhusak/defx-icons'
+  Plug 'kristijanhusak/defx-Icons'
   Plug 'kristijanhusak/defx-git'
 else
   Plug 'Shougo/defx.nvim'
@@ -24,37 +33,36 @@ else
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
-
 call plug#end()
 
 let mapleader=","
 let loaded_netrwPlugin = 1
+let g:rainbow_active = 1
+let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver']
 " ======================
 " INSERT REMAP
 " ======================
 "
-inoremap jk <ESC>
-" ======================
+inoremap jk <ESC> " ======================
 
 " ======================
 " NORMAL REMAP
 " ======================
-nnoremap <leader>f 1z=
-nnoremap <leader>s :set spell!
+nnoremap <leader>/ :set spell!<CR>
 " switch python interpreter
 nnoremap <silent> <leader>pp : <C-u>CocCommand python.setInterpreter<CR>
 nnoremap <silent> <leader>c : <C-u>CocConfig<CR>
 nnoremap <CR> o<Esc>k
 nnoremap <S-CR> O<Esc>j
 nnoremap <leader>ev :split $MYVIMRC<CR>  
-nnoremap <leader>sv :source $MYVIMRC<CR>     
-
+nnoremap <leader>sv :source $MYVIMRC<CR>
 " =======================
 set nocompatible
 set encoding=utf-8
 set mouse=a
 set clipboard=unnamed " system clipboard
-set spell spelllang=en_us
+" set spell spelllang=en_us
+set nospell " disable vim's spell check
 set laststatus=2 " always show status bar
 set tabstop=4
 set shiftwidth=4 " when indenting with '>', use 4 spaces width
@@ -65,7 +73,9 @@ set background=dark
 syntax on
 set termguicolors
 let ayucolor="dark"
-colorscheme ayu
+let g:gruvbox_contrast_dark="hard"
+let g:gruvbox_contrast_light="soft"
+colorscheme gruvbox
 " Absolute line number in insert mode
 " Relative in normal mode
 set number relativenumber
@@ -98,7 +108,7 @@ let g:lightline = {
             \ "\<C-s>": 'SB',
             \ 't': 'T',
             \ },
-            \ 'colorscheme': 'ayu_dark',
+            \ 'colorscheme': 'gruvbox',
             \ 'active': {
             \   'left': [ [ 'mode', 'paste' ],
             \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
@@ -271,7 +281,7 @@ set cmdheight=2
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
-set updatetime=300
+set updatetime=100
 
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
@@ -319,6 +329,23 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+" coc-snippets
+"
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
@@ -337,9 +364,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
+xmap <LocalLeader>f  <Plug>(coc-format-selected)
+nmap <LocalLeader>f  <Plug>(coc-format-selected) 
 augroup mygroup
     autocmd!
     " Setup formatexpr specified filetype(s).
@@ -369,8 +395,8 @@ omap af <Plug>(coc-funcobj-a)
 "
 " NOTE: Requires 'textDocument/selectionRange' support from the language server.
 " coc-tsserver, coc-python are the examples of servers that support it.
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
+" nmap <silent> <TAB> <Plug>(coc-range-select)
+" xmap <silent> <TAB> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
@@ -403,12 +429,59 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 let g:python3_host_prog="/Users/lisixian/.pyenv/versions/neovim/bin/python"
 
-" Neoformat Config
+" " Neoformat Config
 
-let g:neoformat_enabled_python = ['yapf']
-let g:neoformat_only_msg_on_error = 1
+" let g:neoformat_enabled_python = ['yapf']
+" let g:neoformat_enabled_javascript = ['prettier']
+" let g:neoformat_only_msg_on_error = 1
 
-augroup fmt
-    autocmd!
-    autocmd BufWritePre * undojoin | Neoformat
-augroup END
+" augroup fmt
+"     autocmd!
+"     autocmd BufWritePre * undojoin | Neoformat
+" augroup END
+
+" LeaderF
+"
+nnoremap <Leader>n :<C-u>LeaderfFunction<CR>
+nnoremap <Leader>m :<C-u>LeaderfMru<CR>
+
+" Rainbow
+"
+let g:rainbow_conf = {
+            \	'guifgs': ['gold', 'DeepSkyBlue1', 'orange', 'maroon1','turquoise1', 'LightPink' ],
+            \	'ctermfgs': ['lightyellow', 'lightblue', 'lightcyan', 'lightmagenta'],
+            \	'operators': '_,_',
+            \	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+            \	'separately': {
+            \		'*': {},
+            \		'tex': {
+            \			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+            \		},
+            \		'lisp': {
+            \			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+            \		},
+            \		'vim': {
+            \			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+            \		},
+            \		'html': {
+            \			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+            \		},
+            \		'css': 0,
+            \	}
+            \} 
+
+" spell check
+let g:spelunker_check_type = 2
+let g:spelunker_disable_uri_checking = 1
+let g:spelunker_disable_backquoted_checking = 1
+
+" git gutter
+let g:gitgutter_terminal_reports_focus=0
+function! GitGutterNextHunkCycle()
+  let line = line('.')
+  silent! GitGutterNextHunk
+  if line('.') == line
+    1
+    GitGutterNextHunk
+  endif
+endfunction
