@@ -33,5 +33,8 @@ export DISPLAY=:0
 [ -f /Users/lisixian/.travis/travis.sh ] && source /Users/lisixian/.travis/travis.sh
 # function for compiling c++ program
 tomain(){
-    g++ -std=c++11 "$1" -o main && ./main
+    g++ -O2 -std=c++11 "$1" -o main && ./main
 }
+
+# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
+

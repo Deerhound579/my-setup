@@ -6,7 +6,7 @@ alias jrnlv="jrnl -n 3"
 alias jrnle="jrnl -n --edit"
 alias vrc="nvim ~/.vimrc"
 alias zrc="nvim ~/.zshrc"
-alias nv="nvim ~/.config/nvim/init.vim"
+alias nv="nvim ~/Documents/dotfiles/init.vim"
 # tmux 
 alias ta='tmux attach -t'
 alias tad='tmux attach -d -t'
@@ -14,3 +14,4 @@ alias ts='tmux new -s'
 alias tl='tmux list-sessions'
 alias tksv='tmux kill-server'
 alias tkss='tmux kill-session -t'
+alias imgcat='~/.iterm2/imgcat'
