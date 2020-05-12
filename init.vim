@@ -29,6 +29,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'easymotion/vim-easymotion'
 Plug 'bkad/camelcasemotion'
+Plug 'skywind3000/asynctasks.vim'
+Plug 'skywind3000/asyncrun.vim'
 if has('nvim')
 Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'kristijanhusak/defx-Icons'
@@ -49,6 +51,7 @@ source $HOME/.config/nvim/plugins/defx.vim
 source $HOME/.config/nvim/plugins/leaderf.vim
 source $HOME/.config/nvim/plugins/gitgutter.vim
 source $HOME/.config/nvim/plugins/misc.vim
+source $HOME/.config/nvim/plugins/asynctasks.vim
 
 let loaded_netrwPlugin = 1
 let g:python_highlight_space_errors = 0
