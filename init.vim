@@ -89,6 +89,7 @@ set termguicolors
 
 command! -nargs=* T execute 'split | resize' . float2nr(round(winheight(0)*0.3)) . '| terminal <args>'
 command! -nargs=* VT execute 'vsplit | vertical resize' . float2nr(round(winwidth(0)*0.4)) . '| terminal <args>'
+command! -nargs=* HDEFX execute 'vsplit $HOME/.config/nvim/plugins/defx.vim' " defx shortcuts
 augroup numbertoggle
     autocmd!
     autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
