@@ -4,13 +4,13 @@ antigen use oh-my-zsh
 # Change theme
 
 antigen bundle mafredri/zsh-async
-antigen bundle sindresorhus/pure
+#antigen bundle sindresorhus/pure
 
 # Plugins from oh-my-zsh repo
 # General
 antigen bundle git
 antigen bundle colorize
-antigen bundle Z
+antigen bundle agkozak/zsh-z
 antigen bundle colored-man-pages
 # Python auto-completions
 antigen bundle pip

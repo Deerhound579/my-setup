@@ -4,10 +4,12 @@ source ~/antigen.zsh;
 # Load antigem config
 antigen init ~/.antigenrc;
 # Load aliases
-. ~/.zsh_alias
+. ~/.zsh_alias;
 # Pyenv auto startup
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+if type "pyenv" > /dev/null; then
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+fi
 
 zstyle :prompt:pure:virtualenv color yellow
 zstyle :prompt:pure:git:branch color green
@@ -27,9 +29,8 @@ alias makevideodel="ffmpeg -framerate 30 -pattern_type glob -i '*.png' output.mp
 # Path
 # ===============================
 export PATH=/Users/lisixian/.local/bin:$PATH
+export PATH=$PATH:/usr/local/opt/riscv-gnu-toolchain/bin
 export DISPLAY=:0
-# added by travis gem
-# [ -f /Users/lisixian/.travis/travis.sh ] && source /Users/lisixian/.travis/travis.sh
 # function for compiling c++ program
 tomain(){
     g++ -std=c++11 "$1" -o main && ./main
@@ -54,4 +55,4 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
+function gi() { curl -sLw n https://www.toptal.com/developers/gitignore/api/$@ ;}
